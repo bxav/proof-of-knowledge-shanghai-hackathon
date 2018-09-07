@@ -15,14 +15,29 @@ import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { Restangular, RestangularModule } from 'ngx-restangular';
+import {RestangularConfigFactory} from "../lms-api/services/RestangularConfigFactory";
+import {environment} from "../environments/environment";
+import {SchemaFormModule} from "ngx-schema-form";
+import {FormsModule} from "@angular/forms";
+
+export function createRestangularConfigFactory(RestangularProvider) {
+  return RestangularConfigFactory(RestangularProvider, { baseUrl: environment.apiUrl });
+}
+
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
 
+    RestangularModule.forRoot([], createRestangularConfigFactory),
+
+    SchemaFormModule.forRoot(),
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
