@@ -11,6 +11,7 @@ api_platform:
     title: Hello API Platform
     version: 1.0.0
     # Enable the Varnish integration
+    path_segment_name_generator: 'api_platform.path_segment_name_generator.dash'
     http_cache:
         invalidation:
             enabled: true
