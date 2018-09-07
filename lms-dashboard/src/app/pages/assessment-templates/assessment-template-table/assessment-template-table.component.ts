@@ -59,6 +59,14 @@ export class AssessmentTemplateTableComponent {
     }
   }
 
+  onEdit(template): void {
+    this.router.navigate(['/pages/assessment-templates/assessment-template-editor', template.data.id]);
+  }
+
+  onCreate(): void {
+    this.router.navigate(['/pages/assessment-templates/assessment-template-editor']);
+  }
+
   private loadEntities() {
     this.service.getAll().subscribe(data => {
       this.source.load(data);

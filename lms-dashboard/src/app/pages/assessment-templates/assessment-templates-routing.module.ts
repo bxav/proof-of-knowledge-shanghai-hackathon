@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AssessmentTemplatesComponent } from './assessment-templates.component';
 import { AssessmentTemplateTableComponent } from "./assessment-template-table/assessment-template-table.component";
+import {AssessmentTemplateEditorComponent} from "./assessment-template-editor/assessment-template-editor.component";
 
 const routes: Routes = [{
   path: '',
@@ -10,6 +11,12 @@ const routes: Routes = [{
   children: [{
     path: 'assessment-template-table',
     component: AssessmentTemplateTableComponent,
+  }, {
+    path: 'assessment-template-editor',
+    component: AssessmentTemplateEditorComponent,
+  }, {
+    path: 'assessment-template-editor/:id',
+    component: AssessmentTemplateEditorComponent,
   }],
 }];
 
@@ -21,5 +28,6 @@ export class AssessmentTemplatesRoutingModule { }
 
 export const routedComponents = [
   AssessmentTemplatesComponent,
+  AssessmentTemplateEditorComponent,
   AssessmentTemplateTableComponent,
 ];
