@@ -7,4 +7,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
     home: true,
   },
+  {
+    title: 'Assessment Template',
+    icon: 'ion-clipboard',
+    link: '/pages/assessment-templates/assessment-template-table',
+  },
 ];

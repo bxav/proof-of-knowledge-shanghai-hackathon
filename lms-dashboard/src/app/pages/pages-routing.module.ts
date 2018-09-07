@@ -11,6 +11,9 @@ const routes: Routes = [{
     path: 'dashboard',
     component: DashboardComponent,
   }, {
+    path: 'assessment-templates',
+    loadChildren: './assessment-templates/assessment-templates.module#AssessmentTemplatesModule',
+  }, {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
