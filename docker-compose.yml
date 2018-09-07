@@ -2,54 +2,42 @@ version: '3.4'
 
 services:
   php:
-    image: ${CONTAINER_REGISTRY_BASE}/php
     build:
-      context: ./api
+      context: ./lms-api
       target: api_platform_php
-      cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/php
-        - ${CONTAINER_REGISTRY_BASE}/nginx
-        - ${CONTAINER_REGISTRY_BASE}/varnish
     depends_on:
       - db
     env_file:
-      - ./api/.env
+      - ./lms-api/.env
     # Comment out these volumes in production
     volumes:
-      - ./api:/srv/api:rw,cached
+      - ./lms-api:/srv/api:rw,cached
+      - ~/.composer:~/.composer
       # If you develop on Linux, uncomment the following line to use a bind-mounted host directory instead
       # - ./api/var:/srv/api/var:rw
 
   api:
     image: ${CONTAINER_REGISTRY_BASE}/nginx
     build:
-      context: ./api
+      context: ./lms-api
       target: api_platform_nginx
-      cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/php
-        - ${CONTAINER_REGISTRY_BASE}/nginx
-        - ${CONTAINER_REGISTRY_BASE}/varnish
     depends_on:
       - php
     # Comment out this volume in production
     volumes:
-      - ./api/public:/srv/api/public:ro
+      - ./lms-api/public:/srv/api/public:ro
     ports:
       - "8080:80"
 
   cache-proxy:
     image: ${CONTAINER_REGISTRY_BASE}/varnish
     build:
-      context: ./api
+      context: ./lms-api
       target: api_platform_varnish
-      cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/php
-        - ${CONTAINER_REGISTRY_BASE}/nginx
-        - ${CONTAINER_REGISTRY_BASE}/varnish
     depends_on:
       - api
     volumes:
-      - ./api/docker/varnish/conf:/usr/local/etc/varnish:ro
+      - ./lms-api/docker/varnish/conf:/usr/local/etc/varnish:ro
     tmpfs:
       - /usr/local/var/varnish:exec
     ports:
@@ -69,23 +57,6 @@ services:
       # - ./docker/db/data:/var/lib/postgresql/data:rw
     ports:
       - "5432:5432"
-
-  client:
-    # Use a static website hosting service in production
-    # See https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment
-    image: ${CONTAINER_REGISTRY_BASE}/client
-    build:
-      context: ./client
-      cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/client
-    env_file:
-      - ./client/.env
-    volumes:
-      - ./client:/usr/src/client:rw,cached
-      - /usr/src/client/node_modules
-    ports:
-      - "80:3000"
-
 
 volumes:
   db-data: {}
