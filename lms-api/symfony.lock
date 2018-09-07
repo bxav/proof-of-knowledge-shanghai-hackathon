@@ -20,6 +20,9 @@
     "behat/gherkin": {
         "version": "v4.5.1"
     },
+    "behat/mink": {
+        "version": "v1.7.1"
+    },
     "behat/transliterator": {
         "version": "v1.2.0"
     },
@@ -122,6 +125,9 @@
             "ref": "7b6cbc842f8cd3d550815247d12294f6f304a8c4"
         }
     },
+    "paragonie/random_compat": {
+        "version": "v9.99.99"
+    },
     "php-cs-fixer/diff": {
         "version": "v1.2.0"
     },
@@ -149,6 +155,9 @@
     "psr/simple-cache": {
         "version": "1.0.0"
     },
+    "ramsey/uuid": {
+        "version": "3.8.0"
+    },
     "symfony/asset": {
         "version": "v4.0.3"
     },
@@ -169,6 +178,9 @@
             "version": "3.3",
             "ref": "9f94d3ea453cd8a3b95db7f82592d7344fe3a76a"
         }
+    },
+    "symfony/css-selector": {
+        "version": "v3.4.15"
     },
     "symfony/debug": {
         "version": "v4.0.3"
