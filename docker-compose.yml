@@ -12,7 +12,6 @@ services:
     # Comment out these volumes in production
     volumes:
       - ./lms-api:/srv/api:rw,cached
-      - ~/.composer:~/.composer
       # If you develop on Linux, uncomment the following line to use a bind-mounted host directory instead
       # - ./api/var:/srv/api/var:rw
 

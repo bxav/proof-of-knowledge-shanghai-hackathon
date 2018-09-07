@@ -14,11 +14,23 @@
     "api-platform/schema-generator": {
         "version": "v2.1.0-beta.1"
     },
+    "behat/behat": {
+        "version": "v3.5.0"
+    },
+    "behat/gherkin": {
+        "version": "v4.5.1"
+    },
+    "behat/transliterator": {
+        "version": "v1.2.0"
+    },
     "composer/semver": {
         "version": "1.4.2"
     },
     "composer/xdebug-handler": {
         "version": "1.1.0"
+    },
+    "container-interop/container-interop": {
+        "version": "1.2.0"
     },
     "doctrine/annotations": {
         "version": "1.0",
@@ -142,6 +154,9 @@
     },
     "symfony/cache": {
         "version": "v4.0.3"
+    },
+    "symfony/class-loader": {
+        "version": "v3.4.15"
     },
     "symfony/config": {
         "version": "v4.0.3"

@@ -14,6 +14,7 @@
     },
     "require-dev": {
         "api-platform/schema-generator": "^2.1",
+        "behat/behat": "^3.4",
         "symfony/profiler-pack": "^1.0"
     },
     "config": {
