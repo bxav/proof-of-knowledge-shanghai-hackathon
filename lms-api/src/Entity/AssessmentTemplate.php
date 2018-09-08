@@ -39,7 +39,7 @@ class AssessmentTemplate
     /**
      * @var array
      *
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json", nullable=true)
      * @ApiProperty()
      */
     private $answers = [];
@@ -64,7 +64,7 @@ class AssessmentTemplate
         $this->name = $name;
     }
 
-    public function getTemplate(): array
+    public function getTemplate(): ?array
     {
         return $this->template;
     }
@@ -74,7 +74,7 @@ class AssessmentTemplate
         $this->template = $template;
     }
 
-    public function getAnswers(): array
+    public function getAnswers(): ?array
     {
         return $this->answers;
     }

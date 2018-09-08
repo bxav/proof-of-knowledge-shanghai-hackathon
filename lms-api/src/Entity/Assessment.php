@@ -37,7 +37,7 @@ class Assessment
     /**
      * @var string
      *
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=true)
      * @ApiProperty()
      */
     private $authorKey = "";
