@@ -42,7 +42,6 @@ class Assessment
      */
     private $authorKey = "";
 
-
     /**
      * @var array
      *

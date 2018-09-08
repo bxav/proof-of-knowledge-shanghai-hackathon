@@ -36,6 +36,14 @@ class AssessmentTemplate
      */
     private $template = [];
 
+    /**
+     * @var array
+     *
+     * @ORM\Column(type="json")
+     * @ApiProperty()
+     */
+    private $answers = [];
+
     public function __construct()
     {
         $this->id = Uuid::uuid4();
@@ -64,5 +72,15 @@ class AssessmentTemplate
     public function setTemplate(array $template): void
     {
         $this->template = $template;
+    }
+
+    public function getAnswers(): array
+    {
+        return $this->answers;
+    }
+
+    public function setAnswers(array $answers): void
+    {
+        $this->answers = $answers;
     }
 }
