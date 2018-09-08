@@ -8,6 +8,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "fzaninotto/faker": "^1.8",
         "guzzlehttp/guzzle": "^6.3",
+        "justinrainbow/json-schema": "^5.2",
         "ramsey/uuid": "^3.7",
         "symfony/console": "^4.0",
         "symfony/flex": "^1.0",

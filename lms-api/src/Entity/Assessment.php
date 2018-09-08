@@ -8,12 +8,15 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use App\Validator\Constraints as AppAssert;
 
 /**
  * @ORM\Entity
  * @ApiResource()
  *
  * @ApiFilter(SearchFilter::class, properties={"assessmentTemplate": "exact", "authorKey": "exact"})
+ *
+ * @AppAssert\AssessmentSchema()
  */
 class Assessment
 {
