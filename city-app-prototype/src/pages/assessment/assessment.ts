@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {UserAssessmentService} from "../../providers/user-assessment.service";
 
 @IonicPage()
@@ -15,7 +15,8 @@ export class AssessmentPage implements OnInit {
     public navCtrl: NavController,
     private navParams: NavParams,
     private userAssessmentService: UserAssessmentService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private alertCtrl: AlertController
   ) {
   }
 
@@ -32,9 +33,51 @@ export class AssessmentPage implements OnInit {
     loading.present();
 
     this.userAssessmentService.postFromAssessmentTemplateWithData(this.navParams.get('item'), this.item, this.data).subscribe(data => {
-
       loading.dismissAll();
-      this.navCtrl.pop();
+
+      let alert = this.createSuccessAlert();
+      alert.present();
+
+      console.log(data);
+    }, error => {
+      loading.dismissAll();
+
+      let alert = this.createFailureAlert();
+      alert.present();
+    });
+  }
+
+  private createSuccessAlert() {
+    return this.alertCtrl.create({
+      title: 'Success',
+      subTitle: 'Enjoy your new life!',
+      buttons: [{
+        text: 'Ok',
+        role: '',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }]
+    });
+  }
+
+  private createFailureAlert() {
+    return this.alertCtrl.create({
+      title: 'You Failed!',
+      subTitle: 'Do you want to try again?',
+      buttons: [{
+        text: 'Not Now',
+        role: 'cancel',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }, {
+        text: 'Yes',
+        role: '',
+        handler: () => {
+
+        }
+      }]
     });
   }
 
