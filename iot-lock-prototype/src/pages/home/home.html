@@ -7,6 +7,5 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-icon *ngIf="lock" name="lock" color="danger" class="lock-icon"></ion-icon>
-  <ion-icon *ngIf="!lock" name="unlock" color="primary" class="lock-icon"></ion-icon>
+  <ion-icon name="{{ lock ? 'lock' : 'unlock' }}" color="{{ lock ? 'danger' : 'secondary' }}" class="lock-icon"></ion-icon>
 </ion-content>
