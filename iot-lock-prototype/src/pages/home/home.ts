@@ -8,6 +8,7 @@ import {NFC} from "@ionic-native/nfc";
 })
 export class HomePage implements OnInit {
   public lock: boolean = true;
+  public trial: number = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -39,12 +40,27 @@ export class HomePage implements OnInit {
       console.log('received ndef message. the tag contains: ', event.tag);
       console.log('decoded tag id'+this.nfc.bytesToHexString(event.tag.id));
 
-      this.setLock(false);
-
-      return setTimeout(() => {
-        this.setLock(true);
-      },4000);
+      this.validate();
     });
+  }
+
+  private validate() {
+    this.trial++;
+    if (this.trial%2 == 0) {
+      this.setLock(false);
+    } else {
+      return this.alertCtrl.create({
+        title: 'You can\'t come In',
+        subTitle: 'Your are missing the Basic Swimming pool knowledge.',
+        buttons: [{
+          text: 'Ok',
+          role: '',
+          handler: (data) => {
+            this.setLock(true);
+          }
+        }]
+      }).present();
+    }
   }
 
   private createNotAvailableAlert() {
