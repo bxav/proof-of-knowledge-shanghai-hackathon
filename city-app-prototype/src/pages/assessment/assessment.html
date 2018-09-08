@@ -1,0 +1,16 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="item.name">{{ item.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf="item.template">
+    <sf-form [schema]="item.template" [(ngModel)]="data"></sf-form>
+
+    <button ion-button round (click)="send()">Send</button>
+  </div>
+</ion-content>

@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {HttpClientModule} from "@angular/common/http";
 import {UserAssessmentService} from "../providers/user-assessment.service";
+import {DefaultWidgetRegistry, SchemaFormModule, WidgetRegistry} from "ngx-schema-form";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {UserAssessmentService} from "../providers/user-assessment.service";
   imports: [
     BrowserModule,
     HttpClientModule,
+    SchemaFormModule.forRoot(),
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -32,6 +34,7 @@ import {UserAssessmentService} from "../providers/user-assessment.service";
     StatusBar,
     SplashScreen,
     UserAssessmentService,
+    {provide: WidgetRegistry, useClass: DefaultWidgetRegistry},
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

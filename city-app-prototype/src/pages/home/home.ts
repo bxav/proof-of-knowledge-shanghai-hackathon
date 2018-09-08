@@ -42,7 +42,9 @@ export class HomePage {
         text: 'Submit',
         role: '',
         handler: (data) => {
-          return data;
+          this.navCtrl.push('AssessmentPage', {
+            item: data.address
+          });
         }
       }]
     });

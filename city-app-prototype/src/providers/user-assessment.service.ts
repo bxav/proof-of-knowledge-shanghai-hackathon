@@ -13,4 +13,15 @@ export class UserAssessmentService {
         headers: {'Content-Type': 'application/json'}
       });
   }
+
+  public postFromAssessmentTemplateWithData(assessmentTemplateUrl: string, assessmentTemplate: any, assessmentData: any): Observable<any>  {
+    console.log(assessmentTemplateUrl, assessmentData);
+    let urlArray = new URL(assessmentTemplateUrl);
+    console.log(urlArray);
+
+    return this.http.post(urlArray.origin + '/assessments', {
+      assessmentTemplate: assessmentTemplate['@id'],
+      data: assessmentData
+    });
+  }
 }
