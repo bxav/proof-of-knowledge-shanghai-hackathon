@@ -13,6 +13,12 @@ export class HomePage implements OnInit {
 
   }
 
+  doRefresh(refresher) {
+    this.lock = true;
+
+    refresher.complete();
+  }
+
   ngOnInit () {
     this.nfc.addNdefListener(() => {
       console.log('successfully attached ndef listener');
