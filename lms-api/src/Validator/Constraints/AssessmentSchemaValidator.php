@@ -27,7 +27,7 @@ class AssessmentSchemaValidator extends ConstraintValidator
 
         }
 
-        if (array_diff((array) $config, $assessment->getAssessmentTemplate()->getAnswers())) {
+        if ($diff = array_diff((array) $config, $assessment->getAssessmentTemplate()->getAnswers())) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ string }}', 'Failure!')
                 ->addViolation();

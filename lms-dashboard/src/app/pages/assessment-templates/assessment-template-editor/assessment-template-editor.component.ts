@@ -40,7 +40,7 @@ import {AssessmentTemplate} from "../../../../lms-api/classes";
             Expected answers
           </nb-card-header>
           <nb-card-body>
-            <sf-form *ngIf="dataPreview" [schema]="previewDataSchema" [(ngModel)]="dataPreview"></sf-form>
+            <sf-form [schema]="previewDataSchema" [(ngModel)]="dataPreview"></sf-form>
           </nb-card-body>
         </nb-card>
       </div>

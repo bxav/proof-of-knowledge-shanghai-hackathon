@@ -44,9 +44,9 @@ class AssessmentTemplate
      */
     private $answers = [];
 
-    public function __construct()
+    public function __construct($uuid = null)
     {
-        $this->id = Uuid::uuid4();
+        $this->id = $uuid ?? Uuid::uuid4();
     }
 
     public function getId(): string
