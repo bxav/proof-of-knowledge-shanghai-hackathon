@@ -3,16 +3,24 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>City app</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <ion-fab right middle>
+    <button ion-fab color="danger"><ion-icon name="md-share"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="scanCode()"><ion-icon name="camera"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <div>
+    <h3>Welcome to you city app</h3>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    <p>
+      Here you should have all the features from an classic smart-city/building/community app
+    </p>
+  </div>
+
 </ion-content>
