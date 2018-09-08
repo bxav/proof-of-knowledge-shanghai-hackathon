@@ -15,7 +15,7 @@ const routes: Routes = [{
     loadChildren: './assessment-templates/assessment-templates.module#AssessmentTemplatesModule',
   }, {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'assessment-templates/assessment-template-table',
     pathMatch: 'full',
   }, {
     path: '**',

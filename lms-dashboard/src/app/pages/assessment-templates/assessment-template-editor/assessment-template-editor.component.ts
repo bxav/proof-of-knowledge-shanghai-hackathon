@@ -37,7 +37,7 @@ import {AssessmentTemplate} from "../../../../lms-api/classes";
       <div class="col-lg-6">
         <nb-card>
           <nb-card-header>
-            Preview
+            Expected answers
           </nb-card-header>
           <nb-card-body>
             <sf-form [schema]="previewDataSchema" [model]="dataPreview"></sf-form>
@@ -63,8 +63,7 @@ export class AssessmentTemplateEditorComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private route: ActivatedRoute, private templateService: AssessmentTemplatesService) {
     this.editorOptions = new JsonEditorOptions();
-    this.editorOptions.modes = ['code', 'text', 'tree', 'view']; // set all allowed modes
-    //this.options.mode = 'code'; //set only one mode
+    this.editorOptions.modes = ['code', 'text', 'tree', 'view'];
 
     this.editorOptions.onChange = this.change.bind(this);
 
