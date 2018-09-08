@@ -5,4 +5,5 @@ export class AssessmentTemplateBase {
   id?: string;
   name: string;
   template: any;
+  answers: any;
 }

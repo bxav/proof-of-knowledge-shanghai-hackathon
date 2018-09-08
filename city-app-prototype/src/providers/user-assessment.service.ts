@@ -10,8 +10,8 @@ export class UserAssessmentService {
 
   public get(url: string): Observable<any> {
     return this.http.get(url, {
-        headers: {'Content-Type': 'application/json'}
-      });
+      headers: {'Content-Type': 'application/json'}
+    });
   }
 
   public postFromAssessmentTemplateWithData(assessmentTemplateUrl: string, assessmentTemplate: any, assessmentData: any): Observable<any>  {

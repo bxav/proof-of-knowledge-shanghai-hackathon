@@ -40,7 +40,7 @@ import {AssessmentTemplate} from "../../../../lms-api/classes";
             Expected answers
           </nb-card-header>
           <nb-card-body>
-            <sf-form [schema]="previewDataSchema" [model]="dataPreview"></sf-form>
+            <sf-form *ngIf="dataPreview" [schema]="previewDataSchema" [(ngModel)]="dataPreview"></sf-form>
           </nb-card-body>
         </nb-card>
       </div>
@@ -79,6 +79,7 @@ export class AssessmentTemplateEditorComponent implements OnInit, OnDestroy {
 
         this.firstTemplate = this.template.template;
         this.previewDataSchema = this.template.template;
+        this.dataPreview = this.template.answers;
       }
     });
   }
@@ -91,6 +92,7 @@ export class AssessmentTemplateEditorComponent implements OnInit, OnDestroy {
     console.log(this.template);
 
     const template = this.template;
+    template.answers = this.dataPreview;
 
     const obs = template.id ? this.templateService.update(template) : this.templateService.add(template);
 
@@ -111,6 +113,7 @@ export class AssessmentTemplateEditorComponent implements OnInit, OnDestroy {
 
       this.firstTemplate = this.template.template;
       this.previewDataSchema = this.template.template;
+      this.dataPreview = this.template.answers;
     });
   }
 
@@ -125,6 +128,7 @@ export class AssessmentTemplateEditorComponent implements OnInit, OnDestroy {
       },
       required: []
     };
+    this.template.answers = {};
   }
 
   change() {
