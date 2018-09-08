@@ -13,7 +13,7 @@ use Ramsey\Uuid\Uuid;
  * @ORM\Entity
  * @ApiResource()
  *
- * @ApiFilter(SearchFilter::class, properties={"assessmentTemplate": "exact"})
+ * @ApiFilter(SearchFilter::class, properties={"assessmentTemplate": "exact", "authorKey": "exact"})
  */
 class Assessment
 {
@@ -33,6 +33,15 @@ class Assessment
      * @ORM\JoinColumn(nullable=true)
      */
     private $assessmentTemplate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=false)
+     * @ApiProperty()
+     */
+    private $authorKey = "";
+
 
     /**
      * @var array
@@ -70,5 +79,15 @@ class Assessment
     public function setData(array $data): void
     {
         $this->data = $data;
+    }
+
+    public function getAuthorKey(): string
+    {
+        return $this->authorKey;
+    }
+
+    public function setAuthorKey(string $authorKey): void
+    {
+        $this->authorKey = $authorKey;
     }
 }
