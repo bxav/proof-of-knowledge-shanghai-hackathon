@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AlertController, NavController, Platform} from 'ionic-angular';
 import {NFC} from "@ionic-native/nfc";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'page-home',
@@ -12,6 +14,7 @@ export class HomePage implements OnInit {
 
   constructor(
     public navCtrl: NavController,
+    private http: HttpClient,
     private nfc: NFC,
     private platform: Platform,
     private alertCtrl: AlertController
@@ -27,8 +30,15 @@ export class HomePage implements OnInit {
 
   ngOnInit () {
     if (!this.platform.is('cordova')) {
-      let alert = this.createNotAvailableAlert();
-      alert.present();
+      this.http.get(environment.defaultOrgUrl + '/assessments?authorKey='+environment.defaultUserAccount,{
+          headers: {'Accept': 'application/json'}
+        }).subscribe(data => {
+        console.log(data);
+        if (data.length) {
+          this.setLock(false);
+        }
+      });
+
       return;
     }
 
@@ -61,32 +71,6 @@ export class HomePage implements OnInit {
         }]
       }).present();
     }
-  }
-
-  private createNotAvailableAlert() {
-    return this.alertCtrl.create({
-      title: 'Feature not available in browser',
-      subTitle: 'You have to enter the address of the caller manually.',
-      inputs: [
-        {
-          name: 'address',
-          placeholder: 'Public Address'
-        }
-      ],
-      buttons: [{
-        text: 'Not Now',
-        role: 'cancel',
-        handler: () => {
-          this.navCtrl.popToRoot();
-        }
-      }, {
-        text: 'Submit',
-        role: '',
-        handler: (data) => {
-          return data;
-        }
-      }]
-    });
   }
 
   setLock(lock: boolean) {
