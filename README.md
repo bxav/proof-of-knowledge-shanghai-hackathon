@@ -1,10 +1,12 @@
 # **Decentralized LMS** for Smarter cities
 This project was developed under 48 hrs for  http://www.blockchainlabs.org/week2018/hack-shanghai-en.html
 
-## Get it sttarted 
 
-### Architecture
+
+## Architecture
 > https://github.com/bxav/proof-of-knowledge-shanghai-hackathon/blob/master/architecture.pdf
+
+## Get it sttarted 
 
 ### Get the code locally
 ```
@@ -19,7 +21,7 @@ docker-compose up -d
 # ToDo containerised all the frontend apps
 
 
-# Run multi organizations with dcore in the middle
+# Run multi organizations with dcore in the middle (In progress)
 docker-compose up -f docker-compose.dcore.yml -d
 
 ```
