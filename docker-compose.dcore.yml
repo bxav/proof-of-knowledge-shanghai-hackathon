@@ -1,0 +1,75 @@
+version: '3.4'
+
+services:
+  php:
+    build:
+      context: ./lms-api
+      target: api_platform_php
+    depends_on:
+      - db
+    env_file:
+      - ./lms-api/.env
+    # Comment out these volumes in production
+    volumes:
+      - ./lms-api:/srv/api:rw,cached
+      # If you develop on Linux, uncomment the following line to use a bind-mounted host directory instead
+      # - ./api/var:/srv/api/var:rw
+
+  api:
+    image: ${CONTAINER_REGISTRY_BASE}/nginx
+    build:
+      context: ./lms-api
+      target: api_platform_nginx
+    depends_on:
+      - php
+    # Comment out this volume in production
+    volumes:
+      - ./lms-api/public:/srv/api/public:ro
+    ports:
+      - "8080:80"
+
+  cache-proxy:
+    image: ${CONTAINER_REGISTRY_BASE}/varnish
+    build:
+      context: ./lms-api
+      target: api_platform_varnish
+    depends_on:
+      - api
+    volumes:
+      - ./lms-api/docker/varnish/conf:/usr/local/etc/varnish:ro
+    tmpfs:
+      - /usr/local/var/varnish:exec
+    ports:
+      - "8081:80"
+
+  db:
+    # In production, you may want to use a managed database service
+    image: postgres:9.6-alpine
+    environment:
+      - POSTGRES_DB=api
+      - POSTGRES_USER=api-platform
+      # You should definitely change the password in production
+      - POSTGRES_PASSWORD=!ChangeMe!
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
+    ports:
+      - "5432:5432"
+  
+  customnet:
+    image: yangwao/decent-docker:publictestnet-manual-1.2.2
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100M"
+        max-file: "2"
+    volumes:
+      - ./decent-docker/data_customnet:/root/testnet_data
+    ports:
+     - "127.0.0.1:28090:8090"
+     - "127.0.0.1:28091:8091"
+     - "127.0.0.1:28093:8093"
+
+volumes:
+  db-data: {}
