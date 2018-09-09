@@ -3,6 +3,9 @@ This project was developed under 48 hrs for  http://www.blockchainlabs.org/week2
 
 ## Get it sttarted 
 
+### Architecture
+> https://github.com/bxav/proof-of-knowledge-shanghai-hackathon/blob/master/architecture.pdf
+
 ### Get the code locally
 ```
 git clone https://github.com/bxav/proof-of-knowledge-shanghai-hackathon
