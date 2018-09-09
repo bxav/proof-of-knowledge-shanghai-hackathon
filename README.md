@@ -12,6 +12,12 @@ git clone https://github.com/bxav/proof-of-knowledge-shanghai-hackathon
 
 # Run one organization without dcore in the middle
 docker-compose up -d
+(cd lms-dashboard; npm start)
+(cd city-app-prototype; ionic serve)
+(cd iot-lock-prototype; ionic serve)
+(cd iot-lock-prototype; npm run run:android) #build for android
+# ToDo containerised all the frontend apps
+
 
 # Run multi organizations with dcore in the middle
 docker-compose up -f docker-compose.dcore.yml -d
