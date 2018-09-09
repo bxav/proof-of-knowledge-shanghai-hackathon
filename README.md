@@ -1,4 +1,4 @@
-# Proof Of Knowledge
+# **Decentralized LMS** for Smarter cities
 This project was developed under 48 hrs for  http://www.blockchainlabs.org/week2018/hack-shanghai-en.html
 
 ## Get it sttarted 
